@@ -3,9 +3,10 @@ import { Container, Profile } from "./navbar.styles";
 import MarvelLogo from "../../assets/marvel-logo.png";
 import { useNavigate } from "react-router-dom";
 
-export default function NavBar() {
+export default function NavBar({ setLocation }) {
   const navigate = useNavigate();
   const location = window.location.pathname;
+  setLocation(location);
 
   return (
     <Container>

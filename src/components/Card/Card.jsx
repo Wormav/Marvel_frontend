@@ -2,8 +2,6 @@ import { Container } from "./card.styles";
 import notPictureImg from "../../assets/not-picture.png";
 
 export default function Card({ data }) {
-  console.log(data);
-
   const notPicture =
     `${data.thumbnail.path}.${data.thumbnail.extension}`.includes(
       "image_not_available"
@@ -22,6 +20,7 @@ export default function Card({ data }) {
         <img src={urlPicture} alt="" />
       )}
       <span>{data.name}</span>
+      <span>{data.title}</span>
     </Container>
   );
 }

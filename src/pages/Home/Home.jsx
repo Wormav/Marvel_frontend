@@ -21,12 +21,15 @@ export default function Home() {
   };
 
   useEffect(() => {
+    setPage(1);
+  }, [searchInput]);
+
+  useEffect(() => {
     const fetchDatas = async () => {
       try {
         const response = await axios.get(
           `/api/hero?name=${searchInput}&limit=${limit}&skip=${offset}`
         );
-        console.log(response.data.results);
         setData(response.data.results);
         setCount(response.data.count);
         setIsLoading(false);
