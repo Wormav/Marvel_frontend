@@ -1,16 +1,43 @@
 import { Container } from "./modal.styles";
 import notPictureImg from "../../assets/not-picture.png";
 import axios from "../../config/axios.config";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import LittleCard from "../LittleCard/LittleCard.jsx";
+import { AuthContext } from "../../context/user.context.jsx";
 
-function Modal({ open, setOpen, data }) {
+export default function Modal({ open, setOpen, data, type }) {
   const [comicsData, setComicsData] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  const { user, update, setUpdate } = useContext(AuthContext);
+
+  useEffect(() => {
+    if (user) {
+      setIsFavorite(
+        user.account.favorites_hero.includes(data._id) ||
+          user.account.favorites_comics.includes(data._id)
+      );
+    }
+  }, [user, data._id]);
 
   const closeModal = () => {
     document.body.style.overflow = "visible";
     setOpen(false);
+  };
+
+  const updateFavorite = async () => {
+    try {
+      await axios.put(
+        `/api/user/update/${type}/${data._id}?method=${
+          isFavorite ? "delete" : "add"
+        }`
+      );
+      setUpdate(!update);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   useEffect(() => {
@@ -24,10 +51,10 @@ function Modal({ open, setOpen, data }) {
       }
     };
 
-    if (open) {
+    if (open && type === "heros") {
       fetchComicsData();
     }
-  }, [data._id, open]);
+  }, [data._id, open, type]);
 
   const notPicture =
     `${data.thumbnail.path}.${data.thumbnail.extension}`.includes(
@@ -47,36 +74,46 @@ function Modal({ open, setOpen, data }) {
 
   return (
     <Container open={open} onClick={closeModal}>
-      {loading ? (
-        <div className="loading">Chargement en cours...</div>
-      ) : (
-        <div className="content" onClick={stopPropagation}>
-          <div className="close" onClick={closeModal}>
-            X
+      <div className="content" onClick={stopPropagation}>
+        <div className="close" onClick={closeModal}>
+          X
+        </div>
+        <div className="main">
+          <div>
+            {notPicture ? (
+              <img src={notPictureImg} alt="" />
+            ) : (
+              <img src={urlPicture} alt="" />
+            )}
           </div>
-          <div className="main">
-            <div>
-              {notPicture ? (
-                <img src={notPictureImg} alt="" />
+          <div className="description">
+            <p className="title">{data.name ? data.name : data.title}</p>
+            <p className="description-text">{data.description}</p>
+            {user ? (
+              isFavorite ? (
+                <button className="delete-fav" onClick={updateFavorite}>
+                  Retirer des favoris
+                </button>
               ) : (
-                <img src={urlPicture} alt="" />
-              )}
-            </div>
-            <div className="description">
-              <p className="title">{data.name ? data.name : data.title}</p>
-              <p className="description-text">{data.description}</p>
-              <button>Ajouter aux favoris</button>
-            </div>
-          </div>
-          <div className="comics">
-            {comicsData.map((comic) => (
-              <LittleCard key={comic._id} data={comic} />
-            ))}
+                <button onClick={updateFavorite}>Ajouter aux favoris</button>
+              )
+            ) : (
+              <p className="not-co">
+                Connectez-vous pour ajouter ceci à vos favoris
+              </p>
+            )}
           </div>
         </div>
-      )}
+        <div className="comics">
+          {loading ? (
+            <div></div>
+          ) : (
+            comicsData.map((comic) => (
+              <LittleCard key={comic._id} data={comic} />
+            ))
+          )}
+        </div>
+      </div>
     </Container>
   );
 }
-
-export default Modal;

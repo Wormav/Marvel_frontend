@@ -82,6 +82,10 @@ export const Container = styled.div`
     }
   }
 
+  .not-co {
+    color: var(--secondary-color);
+  }
+
   .description {
     text-align: center;
     margin: 16px;
@@ -109,7 +113,7 @@ export const Container = styled.div`
     width: 100%;
     height: 500px;
     gap: 16px;
-    overflow-y: hidden;
+    overflow-x: auto;
 
     &::-webkit-scrollbar {
       width: 0;
@@ -137,5 +141,9 @@ export const Container = styled.div`
       cursor: pointer;
       box-shadow: 0 0 15px white;
     }
+  }
+
+  .delete-fav {
+    background-color: red;
   }
 `;

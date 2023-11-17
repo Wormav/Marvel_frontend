@@ -12,8 +12,6 @@ export default function LittleCard({ data }) {
 
   const urlPicture = `${data.thumbnail.path}.${data.thumbnail.extension}`;
 
-  console.log(data);
-
   return (
     <Container>
       {notPicture ? (

@@ -50,7 +50,7 @@ export default function Comics() {
       ) : (
         <ul>
           {data.map((item) => (
-            <Card key={item.id} data={item} />
+            <Card key={item.id} data={item} type="comics" />
           ))}
         </ul>
       )}

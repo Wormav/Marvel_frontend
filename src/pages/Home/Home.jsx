@@ -49,7 +49,7 @@ export default function Home() {
       ) : (
         <ul>
           {data.map((item) => (
-            <Card key={item.id} data={item} />
+            <Card key={item.id} data={item} type="heros" />
           ))}
         </ul>
       )}

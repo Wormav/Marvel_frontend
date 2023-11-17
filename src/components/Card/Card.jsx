@@ -3,7 +3,7 @@ import notPictureImg from "../../assets/not-picture.png";
 import Modal from "../Modal/Modal";
 import { useState } from "react";
 
-export default function Card({ data }) {
+export default function Card({ data, type }) {
   const [open, setOpen] = useState(false);
 
   const notPicture =
@@ -27,7 +27,7 @@ export default function Card({ data }) {
         <span>{data.name}</span>
         <span>{data.title}</span>
       </Container>
-      <Modal open={open} setOpen={setOpen} data={data} />
+      <Modal open={open} setOpen={setOpen} data={data} type={type} />
     </>
   );
 }
