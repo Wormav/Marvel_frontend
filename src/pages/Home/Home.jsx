@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import SearchBar from "../../components/SearchBar/SearchBar";
-import { Container } from "./home.styles";
+import { Container } from "../mainPage.styles";
 import axios from "../../config/axios.config";
 import Card from "../../components/Card/Card";
 
