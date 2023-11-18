@@ -1,6 +1,7 @@
 import bannerHome from "../../assets/banner-home.png";
 import bannerCommics from "../../assets/banner-comics.png";
 import bannerFavoris from "../../assets/banner-favoris.png";
+import bannerAuth from "../../assets/banner-auth.png";
 import { Container } from "./banner.styles";
 import { useEffect, useState } from "react";
 
@@ -17,6 +18,8 @@ export default function Banner({ location }) {
       location === "/favoris/comics"
     ) {
       setPicture(bannerFavoris);
+    } else if (location === "/signup" || location === "/login") {
+      setPicture(bannerAuth);
     }
   }, [location]);
 
