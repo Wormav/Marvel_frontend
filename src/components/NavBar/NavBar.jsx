@@ -3,6 +3,7 @@ import { Container, Profile } from "./navbar.styles";
 import MarvelLogo from "../../assets/marvel-logo.png";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/user.context";
+import BurgerMenu from "../BurgerMenu/BurgerMenu";
 
 export default function NavBar({ setLocation }) {
   const navigate = useNavigate();
@@ -24,6 +25,7 @@ export default function NavBar({ setLocation }) {
         alt="logo de Marvel"
       />
       <div>
+        <BurgerMenu />
         <ul>
           <li
             className={location === "/" ? "active" : ""}
@@ -38,8 +40,12 @@ export default function NavBar({ setLocation }) {
             Comics
           </li>
           <li
-            className={location === "/favoris" ? "active" : ""}
-            onClick={() => navigate("/favoris")}
+            className={
+              location === "/favoris/heros" || location === "/favoris/comics  "
+                ? "active"
+                : ""
+            }
+            onClick={() => navigate("/favoris/heros")}
           >
             Favoris
           </li>

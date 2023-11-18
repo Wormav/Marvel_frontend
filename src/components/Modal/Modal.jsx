@@ -35,6 +35,7 @@ export default function Modal({ open, setOpen, data, type }) {
         }`
       );
       setUpdate(!update);
+      closeModal();
     } catch (err) {
       console.log(err);
     }

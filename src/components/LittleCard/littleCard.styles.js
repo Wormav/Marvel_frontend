@@ -10,6 +10,8 @@ export const Container = styled.div`
 
   p {
     margin: 0;
-    font-size: 15px;
+    font-size: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 `;

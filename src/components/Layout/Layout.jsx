@@ -3,6 +3,7 @@ import NavBar from "../NavBar/NavBar";
 import { Outlet } from "react-router-dom";
 import { Container } from "./layout.styles";
 import Banner from "../Banner/Banner";
+import Footer from "../Footer/Footer";
 
 export default function Layout({ children }) {
   const [location, setLocation] = useState();
@@ -12,6 +13,7 @@ export default function Layout({ children }) {
       <NavBar setLocation={setLocation} />
       <Banner location={location} />
       <Outlet />
+      <Footer />
     </Container>
   );
 }

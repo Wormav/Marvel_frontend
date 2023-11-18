@@ -9,5 +9,9 @@ export const Container = styled.div`
     border-top: 3px solid var(--primary-color);
     border-bottom: 3px solid var(--primary-color);
     margin-bottom: 32px;
+
+    @media (max-width: 768px) {
+      margin-top: 100px;
+    }
   }
 `;

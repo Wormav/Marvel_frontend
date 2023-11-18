@@ -14,9 +14,21 @@ export const Container = styled.div`
   box-shadow: 0px 0px 10px 0px var(--secondary-color);
   transition: all 0.3s ease;
 
+  @media (max-width: 768px) {
+    &:hover {
+      transform: none;
+      box-shadow: 0px 0px 20px 0px var(--secondary-color);
+    }
+  }
+
   &:hover {
     cursor: pointer;
     transform: scale(1.1);
+
+    @media (max-width: 768px) {
+      transform: none;
+      box-shadow: 0px 0px 20px 0px var(--secondary-color);
+    }
   }
 
   img {

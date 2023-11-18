@@ -111,9 +111,9 @@ export const Container = styled.div`
     align-items: flex-start;
     margin: 16px;
     width: 100%;
-    height: 500px;
+    height: 520px;
     gap: 16px;
-    overflow-x: auto;
+    overflow-y: hidden;
 
     &::-webkit-scrollbar {
       width: 0;

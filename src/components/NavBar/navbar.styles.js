@@ -8,10 +8,15 @@ export const Container = styled.nav`
   height: 100px;
   color: white;
 
+  @media (max-width: 768px) {
+    position: fixed;
+    background-color: var(--background-color);
+    opacity: 0.9;
+  }
+
   img {
     width: 150px;
     height: 120px;
-    margin-left: 16px;
 
     &:hover {
       cursor: pointer;
@@ -26,6 +31,10 @@ export const Container = styled.nav`
     gap: 32px;
     margin-right: 16px;
     font-size: 25px;
+
+    @media (max-width: 768px) {
+      display: none;
+    }
   }
 
   li {
@@ -49,7 +58,6 @@ export const Profile = styled.div`
   height: 50px;
   border-radius: 50%;
   background-color: var(--primary-color);
-  margin-left: 32px;
 
   &:hover {
     cursor: pointer;
