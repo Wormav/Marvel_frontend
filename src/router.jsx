@@ -4,8 +4,7 @@ import Home from "./pages/Home/Home";
 import Comics from "./pages/Comics/Comics.jsx";
 import Login from "./pages/Login/Login.jsx";
 import Signup from "./pages/Signup/Signup.jsx";
-
-// Utiliser la fonction Comics
+import Favoris from "./pages/Favorits/Favoris.jsx";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +30,10 @@ const router = createBrowserRouter([
         path: "/signup",
         element: <Signup />,
         children: [],
+      },
+      {
+        path: "/favoris/:type",
+        element: <Favoris />,
       },
     ],
   },

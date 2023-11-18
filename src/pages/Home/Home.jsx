@@ -28,7 +28,7 @@ export default function Home() {
     const fetchDatas = async () => {
       try {
         const response = await axios.get(
-          `/api/hero?name=${searchInput}&limit=${limit}&skip=${offset}`
+          `/api/heros?name=${searchInput}&limit=${limit}&skip=${offset}`
         );
         setData(response.data.results);
         setCount(response.data.count);
@@ -49,7 +49,7 @@ export default function Home() {
       ) : (
         <ul>
           {data.map((item) => (
-            <Card key={item.id} data={item} type="heros" />
+            <Card key={item._id} data={item} type="heros" />
           ))}
         </ul>
       )}

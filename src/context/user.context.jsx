@@ -8,6 +8,8 @@ export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState();
   const [update, setUpdate] = useState(false);
+  const [comicsFavorites, setComicsFavorites] = useState([]);
+  const [herosFavorites, setHerosFavorites] = useState([]);
 
   useEffect(() => {
     const token = Cookies.get("token");
@@ -16,6 +18,8 @@ export const AuthProvider = ({ children }) => {
       try {
         const response = await axios.get("/api/user");
         setUser(response.data.user);
+        setComicsFavorites(response.data.user.account.favorites_comics);
+        setHerosFavorites(response.data.user.account.favorites_hero);
       } catch (err) {
         console.log(err);
       }
@@ -36,8 +40,6 @@ export const AuthProvider = ({ children }) => {
     setIsAuthenticated(true);
   };
 
-  console.log(user);
-
   return (
     <AuthContext.Provider
       value={{
@@ -47,6 +49,8 @@ export const AuthProvider = ({ children }) => {
         user,
         update,
         setUpdate,
+        comicsFavorites,
+        herosFavorites,
       }}
     >
       {children}
