@@ -12,6 +12,7 @@ export default function Home() {
   const [offset, setOffset] = useState(0);
   const [count, setCount] = useState(0);
   const [page, setPage] = useState(1);
+  const [autocompleteValue, setAutocompleteValue] = useState("");
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -33,6 +34,11 @@ export default function Home() {
         setData(response.data.results);
         setCount(response.data.count);
         setIsLoading(false);
+        if (response.data.results.length > 0 && searchInput) {
+          setAutocompleteValue(
+            response.data.results[0].name.replace(/\([^)]*\)/g, "").trim()
+          );
+        }
       } catch (err) {
         console.log(err);
       }
@@ -43,7 +49,10 @@ export default function Home() {
 
   return (
     <Container>
-      <SearchBar setSearchInput={setSearchInput} />
+      <SearchBar
+        setSearchInput={setSearchInput}
+        autocomplete={autocompleteValue}
+      />
       {isLoading ? (
         <p>Chargement...</p>
       ) : (

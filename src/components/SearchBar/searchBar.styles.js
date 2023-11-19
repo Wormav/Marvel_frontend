@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
+  position: relative;
   justify-content: space-around;
   align-items: center;
   background-color: var(--secondary-color);
@@ -27,5 +28,15 @@ export const Container = styled.div`
     height: 50%;
     padding: 5px 16px;
     box-shadow: 0px 0px 10px 0px var(--background-color);
+  }
+
+  .autocomplete-suggestion {
+    position: absolute;
+    color: gray;
+    right: 20%;
+    max-width: 10%;
+    max-height: 50%;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 `;
